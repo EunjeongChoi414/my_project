@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <title>우리당장만나</title>
+    <script type="text/javascript">
+        function when_page() {
+        }
+
+        function where_page() {
+        }
+    </script>
+    <style type="text/css">
+        .when_click, .where_click{
+            display: inline;
+        }
+
+    </style>
+</head>
+<body>
+<div class="title">
+    <h1>우리 당장 만나</h1>
+</div>
+<div class="when_click" onclick="when_page()">
+    <button type="button" class="btn btn-primary btn-lg" onclick="location.href='when.html'">언제?!</button>
+</div>
+<div class="where_click" onclick="where_page()">
+    <button type="button" class="btn btn-primary btn-lg" onclick="location.href='where.html'">어디서?!</button>
+</div>
+<div class="user_info">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <h5>주선자 이신가요?</h5>
+            <div class="input-group-text">
+                <input type="checkbox" aria-label="Checkbox for following text input">
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">사용자 이름</span>
+        </div>
+        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon2">주선자 이름</span>
+        </div>
+        <input type="text" class="form-control" id="basic-url2" aria-describedby="basic-addon3">
+    </div>
+</div>
+
+</body>
+</html>

@@ -8,5 +8,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="movieStar" />
     <orderEntry type="module" module-name="bookReview" />
+    <orderEntry type="module" module-name="movieStar" />
   </component>
 </module>
