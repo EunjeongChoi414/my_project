@@ -7,16 +7,45 @@
           crossorigin="anonymous">
     <title>우리당장만나</title>
     <script type="text/javascript">
-        function when_page() {
-        }
 
-        function where_page() {
-        }
     </script>
     <style type="text/css">
-        .when_click, .where_click{
-            display: inline;
+
+        .title {
+            width: 350px;
+            height: 48px;
+            position: absolute;
+            left: 37%;
+            top: 20%;
+            margin: 0 auto;
+            text-align: center;
         }
+        .user_info {
+            position: absolute;
+            left: 38%;
+            top: 35%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .when_click {
+            display: inline;
+            width: 55px;
+            height: 30px;
+            position: absolute;
+            left: 25%;
+            top: 40%;
+            margin: 0 auto;
+        }
+        .where_click {
+            display: inline;
+            width: 55px;
+            height: 30px;
+            position: absolute;
+            left: 65%;
+            top: 40%;
+            margin: 0 auto;
+        }
+
 
     </style>
 </head>
@@ -24,10 +53,10 @@
 <div class="title">
     <h1>우리 당장 만나</h1>
 </div>
-<div class="when_click" onclick="when_page()">
+<div class="when_click">
     <button type="button" class="btn btn-primary btn-lg" onclick="location.href='when.html'">언제?!</button>
 </div>
-<div class="where_click" onclick="where_page()">
+<div class="where_click">
     <button type="button" class="btn btn-primary btn-lg" onclick="location.href='where.html'">어디서?!</button>
 </div>
 <div class="user_info">
