@@ -15,7 +15,9 @@
     margin: 0 auto;
     text-align: center;
 }
-
+/*#name_box {*/
+/*    display: none;*/
+/*}*/
 .main_when {
     display: inline;
     width: 120px;

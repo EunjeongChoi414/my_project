@@ -6,47 +6,89 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
     <title>우리당장만나</title>
+
     <script type="text/javascript">
+        $(document).ready(function () {
+            $("#name_box").hide();
+            $("#yes_btn").click(function () {
+                if ($("#yes_btn").is(":checked") && $("#no_btn").is(":not(:checked)")) {
+                    $("#leader_name_box").show();
+                    return
+                } else if ($("#yes_btn").is("not(:checked)") && $("#no_btn").is(":checked")) {
+                    $("#leader_name_box").hide();
+                    $("#name_box").show();
+                    return
+                } else if ($("#yes_btn").is("not(:checked)") && $("#no_btn").is("not(:checked)")) {
+                    alert("주선자 여부를 선택해주세요.");
+                    return
+                } else if ($("#yes_btn").is(":checked") && $("#no_btn").is(":checked")) {
+                    alert("하나만 선택해주세요.");
+                    return
+                }
 
-        function when_btn() {
-            //사용자 정보 저장 api
-            // let yes_leader = $("#yes_btn").val();
-            // let not_leader = $('#no_btn').val();
-            let user_name = $('#basic-url').val();
-            let leader_name = $('#basic-url2').val();
+            });
+        });
 
-            console.log( user_name, leader_name);
-            // 2. 제목, 저자, 리뷰 중 하나라도 입력하지 않았을 경우 alert를 띄웁니다.
-            // if ($("#yes_btn").is(":not(:checked)")|| $("#no_btn").is(":not(:checked)")) {
-            //     alert("주선자 여부를 입력해주세요.");
-            //     $("#yes_btn").focus();
-            //     $("#no_btn").focus();
-            //     return;
-            // } else if (user_name == "") {
-            //     alert("사용자 이름을 입력해주세요.");
-            //     $("#basic-url").focus();
-            //     return;
-            // } else if (leader_name == "") {
-            //     alert("주선자 이름을 입력해주세요.");
-            //     $("#basic-url2").focus();
-            //     return;
-            // }
-            // location.href="when";
 
-            // 3. POST /review 에 저장(Create)을 요청합니다.
-            // $.ajax({
-            //     type: "POST",
-            //     url: "/review",
-            //     data: {title_give: title, author_give: author, review_give: review},
-            //     success: function (response) {
-            //         if (response["result"] == "success") {
-            //             alert(response["msg"]);
-            //             window.location.reload();
-            //         }
-            //     }
-            // })
-        }
+        // function when_btn() {
+        //사용자 정보 저장 api
+        // let yes_leader = $("#yes_btn").val();
+        // let not_leader = $('#no_btn').val();
+        // let user_name = $('#basic-url').val();
+        // let leader_name = $('#basic-url2').val();
+
+        // if ($("#yes_btn").is(":not(:checked)") && $("#no_btn").is(":not(:checked)")) {
+        //     alert("주선자 여부를 선택해주세요.")
+        //     return;
+        // } else if ($("#yes_btn").prop('checked') && $("#no_btn").prop('checked')) {
+        //     alert("둘 중 하나만 체크해주세요.");
+        //     return;
+        // } else if ($("#yes_btn").prop('checked') && $("#no_btn").is(":not(:checked)")) {
+        //     leader_box();
+        //     return;
+        // } else {
+        //     user_box();
+        //     return;
+        // }
+
+        // } else if (user_name == "") {
+        //     alert("사용자 이름을 입력해주세요.");
+        //     $("#basic-url").focus();
+        //     return;
+        // } else if (leader_name == "") {
+        //     alert("주선자 이름을 입력해주세요.");
+        //     $("#basic-url2").focus();
+        //     return;
+        // }
+        // location.href="when";
+
+        // 3. POST /review 에 저장(Create)을 요청합니다.
+        // $.ajax({
+        //     type: "POST",
+        //     url: "/review",
+        //     data: {title_give: title, author_give: author, review_give: review},
+        //     success: function (response) {
+        //         if (response["result"] == "success") {
+        //             alert(response["msg"]);
+        //             window.location.reload();
+        //         }
+        //     }
+        // })
+
+        // function leader_box() {
+        //     $("#leader_name_box").show();
+        // }
+        //
+        // function user_box() {
+        //     $("#name_box").show();
+        // }
+
+
     </script>
 </head>
 
@@ -54,7 +96,7 @@
 <div class="title">
     <h1>우리 당장 만나</h1>
 </div>
-<div class = "main_when">
+<div class="main_when">
     <button onclick="when_btn()" type="button">언제?!</button>
 </div>
 <div class="main_where">
@@ -73,18 +115,21 @@
             </div>
         </div>
     </div>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">사용자 이름</span>
+    <div id="name_box">
+        <div class="input-group mb-3" id="user_name_box">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">사용자 이름</span>
+            </div>
+            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
         </div>
-        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-    </div>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon2">주선자 이름</span>
+        <div class="input-group mb-3" id="leader_name_box">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2">주선자 이름</span>
+            </div>
+            <input type="text" class="form-control" id="basic-url2" aria-describedby="basic-addon3">
         </div>
-        <input type="text" class="form-control" id="basic-url2" aria-describedby="basic-addon3">
     </div>
+
 </div>
 
 </body>
