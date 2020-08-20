@@ -5,66 +5,71 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
     <title>우리당장만나</title>
     <script type="text/javascript">
 
+        function when_btn() {
+            //사용자 정보 저장 api
+            // let yes_leader = $("#yes_btn").val();
+            // let not_leader = $('#no_btn').val();
+            let user_name = $('#basic-url').val();
+            let leader_name = $('#basic-url2').val();
+
+            console.log( user_name, leader_name);
+            // 2. 제목, 저자, 리뷰 중 하나라도 입력하지 않았을 경우 alert를 띄웁니다.
+            // if ($("#yes_btn").is(":not(:checked)")|| $("#no_btn").is(":not(:checked)")) {
+            //     alert("주선자 여부를 입력해주세요.");
+            //     $("#yes_btn").focus();
+            //     $("#no_btn").focus();
+            //     return;
+            // } else if (user_name == "") {
+            //     alert("사용자 이름을 입력해주세요.");
+            //     $("#basic-url").focus();
+            //     return;
+            // } else if (leader_name == "") {
+            //     alert("주선자 이름을 입력해주세요.");
+            //     $("#basic-url2").focus();
+            //     return;
+            // }
+            // location.href="when";
+
+            // 3. POST /review 에 저장(Create)을 요청합니다.
+            // $.ajax({
+            //     type: "POST",
+            //     url: "/review",
+            //     data: {title_give: title, author_give: author, review_give: review},
+            //     success: function (response) {
+            //         if (response["result"] == "success") {
+            //             alert(response["msg"]);
+            //             window.location.reload();
+            //         }
+            //     }
+            // })
+        }
     </script>
-    <style type="text/css">
-
-        .title {
-            width: 350px;
-            height: 48px;
-            position: absolute;
-            left: 37%;
-            top: 20%;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .user_info {
-            position: absolute;
-            left: 38%;
-            top: 35%;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .when_click {
-            display: inline;
-            width: 55px;
-            height: 30px;
-            position: absolute;
-            left: 25%;
-            top: 40%;
-            margin: 0 auto;
-        }
-        .where_click {
-            display: inline;
-            width: 55px;
-            height: 30px;
-            position: absolute;
-            left: 65%;
-            top: 40%;
-            margin: 0 auto;
-        }
-
-
-    </style>
 </head>
+
 <body>
 <div class="title">
     <h1>우리 당장 만나</h1>
 </div>
-<div class="when_click">
-    <button type="button" class="btn btn-primary btn-lg" onclick="location.href='when.html'">언제?!</button>
+<div class = "main_when">
+    <button onclick="when_btn()" type="button">언제?!</button>
 </div>
-<div class="where_click">
+<div class="main_where">
     <button type="button" class="btn btn-primary btn-lg" onclick="location.href='where.html'">어디서?!</button>
 </div>
 <div class="user_info">
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <h5>주선자 이신가요?</h5>
+            <h5>주선자 이신가요? &nbsp;네</h5>
             <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text input">
+                <input type="checkbox" aria-label="Checkbox for following text input" id="yes_btn">
+            </div>
+            <h5>&nbsp;아니요</h5>
+            <div class="input-group-text">
+                <input type="checkbox" aria-label="Checkbox for following text input" id="no_btn">
             </div>
         </div>
     </div>

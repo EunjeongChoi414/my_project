@@ -1,0 +1,68 @@
+.title {
+    width: 350px;
+    height: 48px;
+    position: absolute;
+    left: 37%;
+    top: 20%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.user_info {
+    position: absolute;
+    left: 38%;
+    top: 35%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main_when {
+    display: inline;
+    width: 120px;
+    height: 60px;
+    position: absolute;
+    left: 25%;
+    top: 40%;
+    margin: 0 auto;
+    border: 1px solid transparent;
+    border-radius: .3rem;
+    background-color: #007bff;
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+.main_when button {
+    color: #fff;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.main_where {
+    display: inline;
+    width: 55px;
+    height: 30px;
+    position: absolute;
+    left: 65%;
+    top: 40%;
+    margin: 0 auto;
+}
+
+.step2_btn {
+    width: 120px;
+    height: 60px;
+    position: absolute;
+    left: 25%;
+    top: 40%;
+    margin: 0 auto;
+    border: 1px solid transparent;
+    border-radius: .3rem;
+    background-color: #007bff;
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+.step3_btn{
+
+}

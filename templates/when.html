@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>우리당장만나</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <script type="text/javascript">
+
+    </script>
+    <style type="text/css"></style>
 </head>
 <body>
+<div class="intro">
+    <h1>STEP1</h1>
+    <h1>모임날짜 선택하기</h1>
+    <h3>주선자는 모임을 할 수 있는 날짜들을 클릭해주세요!</h3>
+</div>
+<div class = "when_calendar">
+
+</div>
+<div class="step2_btn">
+    <a href= "{{ url_for('when2') }}">다음 STEP</a>
+</div>
 
 </body>
 </html>
