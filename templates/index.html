@@ -22,71 +22,63 @@
                     $("#leader_name_box").show();
                     $("#user_name_box").hide();
                     $("#no_btn").prop("checked", false);
+                    $("#basic-url2").focus();
                     return
                 } else {
                     $("#no_btn").prop("checked", true);
                     $("#leader_name_box").hide();
                     $("#leader_name_box").show();
                     $("#user_name_box").show();
+                    $("#basic-url").focus();
                     return
                 }
             });
             $("#no_btn").click(function () {
-            if ($("#no_btn").is(":checked")) {
+                if ($("#no_btn").is(":checked")) {
                     $("#leader_name_box").show();
                     $("#user_name_box").show();
                     $("#yes_btn").prop("checked", false);
+                    $("#basic-url").focus();
                     return
                 } else {
                     $("#yes_btn").prop("checked", true);
                     $("#user_name_box").hide();
                     $("#leader_name_box").show();
+                    $("#basic-url2").focus();
                     return
                 }
+            });
         });
-        });
-        // } else if ($("#yes_btn").is("not(:checked)") && $("#no_btn").is("not(:checked)")) {
-        //     alert("주선자 여부를 선택해주세요.");
-        //     return
-        // } else if ($("#yes_btn").is(":checked") && $("#no_btn").is(":checked")) {
-        //     alert("하나만 선택해주세요.");
-        //     return
-        // }
 
+        function when_btn() {
+            let user_name = $('#basic-url').val();
+            let leader_name = $('#basic-url2').val();
 
-        // function when_btn() {
-        //사용자 정보 저장 api
-        // let yes_leader = $("#yes_btn").val();
-        // let not_leader = $('#no_btn').val();
-        // let user_name = $('#basic-url').val();
-        // let leader_name = $('#basic-url2').val();
+            if ($("#yes_btn").is(":checked")) {
+                if (leader_name == "") {
+                    alert("주선자 이름을 입력해주세요.");
+                    $("#basic-url2").focus();
+                    return;
+                } else {
+                 location.href = "when";
+                 //API POST
+                }
+            } else {
+                if (user_name == "") {
+                    alert("사용자 이름을 입력해주세요.");
+                    $("#basic-url").focus();
+                    return;
+                } else if (leader_name == "") {
+                    alert("주선자 이름을 입력해주세요.");
+                    $("#basic-url2").focus();
+                    return;
+                } else {
+                    location.href = "when2";
+                    //API POST
+                }
+            }
 
-        // if ($("#yes_btn").is(":not(:checked)") && $("#no_btn").is(":not(:checked)")) {
-        //     alert("주선자 여부를 선택해주세요.")
-        //     return;
-        // } else if ($("#yes_btn").prop('checked') && $("#no_btn").prop('checked')) {
-        //     alert("둘 중 하나만 체크해주세요.");
-        //     return;
-        // } else if ($("#yes_btn").prop('checked') && $("#no_btn").is(":not(:checked)")) {
-        //     leader_box();
-        //     return;
-        // } else {
-        //     user_box();
-        //     return;
-        // }
-
-        // } else if (user_name == "") {
-        //     alert("사용자 이름을 입력해주세요.");
-        //     $("#basic-url").focus();
-        //     return;
-        // } else if (leader_name == "") {
-        //     alert("주선자 이름을 입력해주세요.");
-        //     $("#basic-url2").focus();
-        //     return;
-        // }
-        // location.href="when";
-
-        // 3. POST /review 에 저장(Create)을 요청합니다.
+        }
         // $.ajax({
         //     type: "POST",
         //     url: "/review",
@@ -99,14 +91,6 @@
         //     }
         // })
 
-        // function leader_box() {
-        //     $("#leader_name_box").show();
-        // }
-        //
-        // function user_box() {
-        //     $("#name_box").show();
-        // }
-
 
     </script>
 </head>
@@ -116,7 +100,7 @@
     <h1>우리 당장 만나</h1>
 </div>
 <div class="main_when">
-    <button onclick="when_btn()" type="button">언제?!</button>
+    <button type="button" class="btn btn-primary btn-lg" onclick="when_btn()">언제?!</button>
 </div>
 <div class="main_where">
     <button type="button" class="btn btn-primary btn-lg" onclick="location.href='where.html'">어디서?!</button>
