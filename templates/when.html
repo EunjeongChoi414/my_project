@@ -3,9 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <title>우리당장만나</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
+        $(document).ready(function () {
+            drawCalendar();
+            initDate();
+            drawDays();
+        })
 
+        function drawCalendar() {
+            var setTableHTML = "";
+            setTableHTML += '<table class="calendar">';
+            setTableHTML += '<tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>';
+            for (var i = 0; i < 5; i++) {
+                setTableHTML += '<tr height="100">';
+                for (var j = 0; j < 7; j++) {
+                    setTableHTML += '<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
+                    setTableHTML += '    <div class="cal-day"></div>';
+                    setTableHTML += '</td>';
+                }
+                setTableHTML += '</tr>';
+            }
+            setTableHTML += '</table>';
+            $("#cal_tab").html(setTableHTML);
+        }
+
+        var today = null;
+        var todayDayOfWeek = null;
+        var todayDay = null;
+        var todayMonth = null;
+        var todayYear = null;
+        var $tdDay = null;
+        var dayCount = null;
+        var firstDay = null;
+        var lastDay = null
+        var firstDayOfMonth = null;
+        var lastDayOfMonth = null;
+        var weekStartDate = null;
+        // var weekEndDate = null;
+        var thisWeekStartDate = null;
+        // var thisWeekEndDate = null;
+        var month = new Array();
+        month[0] = "1";
+        month[1] = "2";
+        month[2] = "3";
+        month[3] = "4";
+        month[4] = "5";
+        month[5] = "6";
+        month[6] = "7";
+        month[7] = "8";
+        month[8] = "9";
+        month[9] = "10";
+        month[10] = "11";
+        month[11] = "12";
+
+        //날짜 초기화
+        function initDate() {
+            $tdDay = $("td div.cal-day")
+            dayCount = 0;
+            today = new Date();
+            todayDayOfWeek = today.getDay();
+            todayDay = today.getDate();
+            todayMonth = parseInt(month[today.getMonth()]);
+            todayYear = today.getFullYear();
+            firstDay = new Date(todayYear, todayMonth-1, 1);
+            lastDay = new Date(todayYear, todayMonth, 0);
+            firstDayOfMonth = firstDay.getDate();
+            lastDayOfMonth = lastDay.getDate();
+            weekStartDate = new Date(todayYear, todayMonth, todayDay - todayDayOfWeek);
+            // weekEndDate = new Date(todayYear, todayMonth, todayDay + (6-todayDayOfWeek));
+            // thisWeekEndDate = weekEndDate.getDate()
+            thisWeekStartDate = weekStartDate.getDate();
+        }
+
+        //calendar 날짜 채우기
+        function drawDays() {
+            for (var i = 0; i < (lastDayOfMonth - weekStartDate.getDate() + 1); i++) {
+                $tdDay.eq(i).text(todayMonth + "/" + thisWeekStartDate++);
+                // if( $tdDay.eq(i).text() == 'todayMonth + "/" + todayDay') {
+                //     $tdDay.eq(i).css("font-weight", "bold");
+                // }
+            }
+            for (var i = (lastDayOfMonth - weekStartDate.getDate() + 1); i < 35; i++) {
+                $tdDay.eq(i).text(todayMonth+1 +"/" +firstDayOfMonth++);
+            }
+            for (var i = 0; i < 42; i += 7) {
+                $tdDay.eq(i).css("color", "red");
+            }
+            for (var i = 6; i < 42; i += 7) {
+                $tdDay.eq(i).css("color", "blue");
+            }
+        }
     </script>
     <style type="text/css">
         .intro h1 {
@@ -17,19 +105,36 @@
             margin: 0 auto;
             padding-top: 30px;
         }
+        table {
+            border: 1px solid black;
+            display: inline-table;
+            text-align: left;
+            width: 500px;
+        }
+        table.calendar td {
+            vertical-align: top;
+            border: 1px solid skyblue;
+            width: 100px;
+        }
+        .when_calendar {
+            width: 500px;
+            margin: 0 auto;
+
+        }
         .step2_btn{
             width: 100px;
             margin-left: 80%;
         }
+
     </style>
 </head>
 <body>
 <div class ="intro">
     <h1>모임날짜 선택하기</h1>
     <h3>주선자는 모임을 할 수 있는 날짜들을 클릭해주세요!</h3>
-</div>
+</div><br>
 <div class="when_calendar">
-
+    <div id="cal_tab" class="cal"></div>
 </div>
 <div class="step2_btn">
     <a href="{{ url_for('when2') }}">다음 STEP</a>
