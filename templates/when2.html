@@ -3,6 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>우리당장만나</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+         $(document).ready(function () {
+            drawCalendar();
+            // initDate();
+            // drawDays();
+            // changeColor();
+        })
+        function drawCalendar() {
+
+            //저장된 날짜 api get
+            // $.ajax({
+            //     type: "GET",
+            //     url: "/review",
+            //     data: {},
+            //     success: function (response) {
+            //         if (response["result"] == "success") {
+            //             let reviews = response['all_reviews']
+            //             for (let i = 0; i<reviews.length; i++ ) {
+            //                 appendReview(reviews[i]['title'], reviews[i]['author'], reviews[i]['review'])
+            //             }
+            //         } else {
+            //             alert("리뷰를 받아오지 못했습니다");
+            //         }
+            //     }
+            // })/
+            let list = ["8/27", "8/28"];
+            let setTableHTML = "";
+            setTableHTML += '<table class="calendar">';
+            setTableHTML += '<tr>'
+            for(let i= 0; i< list.length ; i++) {
+                let tableHeader = '<th>' + list[i] + '</th>';
+                setTableHTML += tableHeader;
+            }
+            setTableHTML+= '</tr>'
+            // setTableHTML += '<tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>';
+
+            for (var i = 0; i < 48; i++) {
+                setTableHTML += '<tr height="25">';
+                for (var j = 0; j < list.length; j++) {
+                    setTableHTML += '<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
+                    setTableHTML += '    <div class="time_selection"></div>';
+                    setTableHTML += '</td>';
+                }
+                setTableHTML += '</tr>';
+            }
+
+            setTableHTML += '</table>';
+            $("#time_tab").html(setTableHTML);
+        }
+    </script>
+    <title>우리당장만나</title>
     <style type="text/css">
         .intro h1 {
             width: 400px;
@@ -12,6 +64,17 @@
             width: 330px;
             margin: 0 auto;
             padding-top: 30px;
+        }
+        table {
+            border: 1px solid black;
+            display: inline-table;
+            text-align: left;
+            width: 500px;
+        }
+        table.calendar td {
+            vertical-align: top;
+            border: 1px solid skyblue;
+            width: 100px;
         }
         .step3_btn{
             width: 100px;
@@ -23,9 +86,10 @@
 <div class="intro">
     <h1>나의 가능한 시간 입력하기</h1>
     <h3>가능한 시간을 클릭/드래그 해주세요!</h3>
-</div>
-<div class = "when_timetable">
 
+</div>
+<div class = "time">
+    <div id="time_tab"></div>
 </div>
 <div class="step3_btn">
     <a href= "{{ url_for('when3') }}">다음 STEP</a>
