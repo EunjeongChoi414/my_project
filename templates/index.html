@@ -14,12 +14,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#leader_name_box").hide();
-            $("#user_name_box").hide();
+            $("#member_name_box").hide();
 
             $("#yes_btn").click(function () {
                 if ($("#yes_btn").is(":checked")) {
                     $("#leader_name_box").show();
-                    $("#user_name_box").hide();
+                    $("#member_name_box").hide();
                     $("#no_btn").prop("checked", false);
                     $("#basic-url2").focus();
                     return
@@ -27,7 +27,7 @@
                     $("#no_btn").prop("checked", true);
                     $("#leader_name_box").hide();
                     $("#leader_name_box").show();
-                    $("#user_name_box").show();
+                    $("#member_name_box").show();
                     $("#basic-url").focus();
                     return
                 }
@@ -35,13 +35,13 @@
             $("#no_btn").click(function () {
                 if ($("#no_btn").is(":checked")) {
                     $("#leader_name_box").show();
-                    $("#user_name_box").show();
+                    $("#member_name_box").show();
                     $("#yes_btn").prop("checked", false);
                     $("#basic-url").focus();
                     return
                 } else {
                     $("#yes_btn").prop("checked", true);
-                    $("#user_name_box").hide();
+                    $("#member_name_box").hide();
                     $("#leader_name_box").show();
                     $("#basic-url2").focus();
                     return
@@ -50,7 +50,7 @@
         });
 
         function when_btn() {
-            let user_name = $('#basic-url').val();
+            let member_name = $('#basic-url').val();
             let leader_name = $('#basic-url2').val();
 
             if ($("#yes_btn").is(":checked")) {
@@ -59,11 +59,12 @@
                     $("#basic-url2").focus();
                     return;
                 } else {
+                    member_name = leader_name;
                     location.href = "when";
                     //API POST
                 }
             } else {
-                if (user_name == "") {
+                if (member_name == "") {
                     alert("사용자 이름을 입력해주세요.");
                     $("#basic-url").focus();
                     return;
@@ -77,19 +78,17 @@
                 }
             }
 
+            $.ajax({
+                type: "POST",
+                url: "/",
+                data: {leader_name_give: leader_name, member_name_give: member_name},
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        alert(response["msg"]);
+                    }
+                }
+            })
         }
-
-        // $.ajax({
-        //     type: "POST",
-        //     url: "/review",
-        //     data: {title_give: title, author_give: author, review_give: review},
-        //     success: function (response) {
-        //         if (response["result"] == "success") {
-        //             alert(response["msg"]);
-        //             window.location.reload();
-        //         }
-        //     }
-        // })
 
 
     </script>
@@ -114,7 +113,7 @@
 
         .main_when {
             width: 90px;
-            height:50px;
+            height: 50px;
             position: absolute;
             left: 45%;
             top: 60%;
@@ -163,7 +162,7 @@
         </div>
     </div>
     <div id="name_box">
-        <div class="input-group mb-3" id="user_name_box">
+        <div class="input-group mb-3" id="member_name_box">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon3">사용자 이름</span>
             </div>
