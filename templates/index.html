@@ -60,7 +60,7 @@
                     return;
                 } else {
                     member_name = leader_name;
-                    location.href = "when";
+                    location.href = "when?name:"+leader_name;
                     //API POST
                 }
             } else {
@@ -84,12 +84,10 @@
                 data: {leader_name_give: leader_name, member_name_give: member_name},
                 success: function (response) {
                     if (response["result"] == "success") {
-                        alert(response["msg"]);
                     }
                 }
             })
         }
-
 
     </script>
     <style type="text/css">

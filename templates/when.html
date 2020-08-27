@@ -102,11 +102,24 @@
             for(let l=0; l<35; l++) {
                 if($("#"+l).css("background-color")=='rgb(135, 206, 250)') {
                     dates.push($tdDay.eq(l).text());
-                    console.log(dates);
+
                 }
             }
             //선택된 날짜 api post.
+            let leader_name = "";
+            var temp = location.href.split("?");
+            leader_name = temp[1].split(":")[1];
 
+            $.ajax({
+                type: "POST",
+                url: "/when",
+                data: {dates_give: dates, id_give: leader_name},
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        alert(response['msg']);
+                    }
+                }
+            })
             // location.href = "when2";
         }
     </script>
