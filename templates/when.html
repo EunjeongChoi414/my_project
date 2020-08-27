@@ -72,19 +72,18 @@
             firstDayOfMonth = firstDay.getDate();
             lastDayOfMonth = lastDay.getDate();
             weekStartDate = new Date(todayYear, todayMonth, todayDay - todayDayOfWeek);
+            thisWeekStartDate = weekStartDate.getDate();
             // weekEndDate = new Date(todayYear, todayMonth, todayDay + (6-todayDayOfWeek));
             // thisWeekEndDate = weekEndDate.getDate()
-            thisWeekStartDate = weekStartDate.getDate();
         }
 
         //calendar 날짜 채우기
         function drawDays() {
             for (var i = 0; i < (lastDayOfMonth - weekStartDate.getDate() + 1); i++) {
                 $tdDay.eq(i).text(todayMonth + "/" + thisWeekStartDate++);
-
-                // if( $tdDay.eq(i).text() == 'todayMonth + "/" + todayDay') {
-                //     $tdDay.eq(i).css("font-weight", "bold");
-                // }
+                if( $tdDay.eq(i).text() == todayMonth + "/" + todayDay) {
+                    $tdDay.eq(i).css("font-weight", "900");
+                }
             }
             for (var i = (lastDayOfMonth - weekStartDate.getDate() + 1); i < 35; i++) {
                 $tdDay.eq(i).text(todayMonth+1 +"/" +firstDayOfMonth++);
@@ -100,7 +99,7 @@
         function changeColor() {
             for(let k = 0; k<35; k++ ){
                 $("#"+k).click(function () {
-                 if($("#"+k).css("background-color")=='rgba(0, 0, 0, 0)') {
+                 if($("#"+k).css("background-color")=='rgba(0, 0, 0, 0)'){
                      $("#"+k).css("background-color", "lightskyblue");
                      return
                  }else {
@@ -148,7 +147,7 @@
 <div class ="intro">
     <h1>모임날짜 선택하기</h1>
     <h3>주선자는 모임을 할 수 있는 날짜들을 클릭해주세요!</h3>
-</div><br>
+</div><br><br>
 <div class="when_calendar">
     <div id="cal_tab" class="cal"></div>
 </div>
