@@ -19,21 +19,21 @@
 /*#name_box {*/
 /*    display: none;*/
 /*}*/
-.main_when {
-    display: inline;
-    width: 55px;
-    height: 30px;
-    position: absolute;
-    left: 25%;
-    top: 40%;
-    margin: 0 auto;
-    border: 1px solid transparent;
-    border-radius: .3rem;
-    background-color: #007bff;
-    padding: .5rem 1rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
-}
+/*.main_when {*/
+/*    display: inline;*/
+/*    width: 55px;*/
+/*    height: 30px;*/
+/*    position: absolute;*/
+/*    left: 25%;*/
+/*    top: 40%;*/
+/*    margin: 0 auto;*/
+/*    border: 1px solid transparent;*/
+/*    border-radius: .3rem;*/
+/*    background-color: #007bff;*/
+/*    padding: .5rem 1rem;*/
+/*    font-size: 1.25rem;*/
+/*    line-height: 1.5;*/
+/*}*/
 
 .main_where {
     display: inline;

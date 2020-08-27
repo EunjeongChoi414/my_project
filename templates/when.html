@@ -9,6 +9,7 @@
             drawCalendar();
             initDate();
             drawDays();
+            changeColor();
         })
 
         function drawCalendar() {
@@ -16,9 +17,9 @@
             setTableHTML += '<table class="calendar">';
             setTableHTML += '<tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>';
             for (var i = 0; i < 5; i++) {
-                setTableHTML += '<tr height="100">';
+                setTableHTML += '<tr height="50">';
                 for (var j = 0; j < 7; j++) {
-                    setTableHTML += '<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
+                    setTableHTML += '<td id="' + (i*7+j) + '"style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
                     setTableHTML += '    <div class="cal-day"></div>';
                     setTableHTML += '</td>';
                 }
@@ -80,6 +81,7 @@
         function drawDays() {
             for (var i = 0; i < (lastDayOfMonth - weekStartDate.getDate() + 1); i++) {
                 $tdDay.eq(i).text(todayMonth + "/" + thisWeekStartDate++);
+
                 // if( $tdDay.eq(i).text() == 'todayMonth + "/" + todayDay') {
                 //     $tdDay.eq(i).css("font-weight", "bold");
                 // }
@@ -92,6 +94,20 @@
             }
             for (var i = 6; i < 42; i += 7) {
                 $tdDay.eq(i).css("color", "blue");
+            }
+        }
+
+        function changeColor() {
+            for(let k = 0; k<35; k++ ){
+                $("#"+k).click(function () {
+                 if($("#"+k).css("background-color")=='rgba(0, 0, 0, 0)') {
+                     $("#"+k).css("background-color", "lightskyblue");
+                     return
+                 }else {
+                     $("#"+k).css("background-color", 'rgba(0, 0, 0, 0)');
+                     return
+                 }
+            })
             }
         }
     </script>
