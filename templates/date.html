@@ -45,6 +45,8 @@
         var thisWeekStartDate = null;
         // var thisWeekEndDate = null;
         var month = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+        var nextLastDay = null;
+        var nextLastDayOfMonth = null;
 
         //날짜 초기화
         function initDate() {
@@ -57,8 +59,10 @@
             todayYear = today.getFullYear();
             firstDay = new Date(todayYear, todayMonth-1, 1);
             lastDay = new Date(todayYear, todayMonth, 0);
+            nextLastDay = new Date(todayYear, todayMonth+1, 0);
             firstDayOfMonth = firstDay.getDate();
-            lastDayOfMonth = lastDay.getDate();
+            lastDayOfMonth = lastDay.getDate()
+            nextLastDayOfMonth = nextLastDay.getDate();
             weekStartDate = new Date(todayYear, todayMonth, todayDay - todayDayOfWeek);
             thisWeekStartDate = weekStartDate.getDate();
             // weekEndDate = new Date(todayYear, todayMonth, todayDay + (6-todayDayOfWeek));
@@ -73,7 +77,7 @@
                     $tdDay.eq(i).css("font-weight", "900");
                 }
             }
-            for (var i = (lastDayOfMonth - weekStartDate.getDate() + 1); i < 35; i++) {
+            for (var i = (lastDayOfMonth - weekStartDate.getDate() + 1); i < lastDayOfMonth - weekStartDate.getDate() + nextLastDayOfMonth +1 ; i++) {
                 $tdDay.eq(i).text(todayMonth+1 +"/" +firstDayOfMonth++);
             }
             for (var i = 0; i < 42; i += 7) {
@@ -112,15 +116,14 @@
 
             $.ajax({
                 type: "POST",
-                url: "/when",
+                url: "/date",
                 data: {dates_give: dates, id_give: leader_name},
                 success: function (response) {
                     if (response["result"] == "success") {
-                        alert(response['msg']);
+                        location.href = "time?name:"+leader_name;
                     }
                 }
             })
-            // location.href = "when2";
         }
     </script>
     <style type="text/css">

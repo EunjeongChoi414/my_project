@@ -60,7 +60,7 @@
                     return;
                 } else {
                     member_name = leader_name;
-                    location.href = "when?name:"+leader_name;
+                    location.href = "date?name:"+leader_name;
                     //API POST
                 }
             } else {
@@ -73,14 +73,14 @@
                     $("#basic-url2").focus();
                     return;
                 } else {
-                    location.href = "when2";
+                    location.href = "time";
                     //API POST
                 }
             }
 
             $.ajax({
                 type: "POST",
-                url: "/",
+                url: "/user_info",
                 data: {leader_name_give: leader_name, member_name_give: member_name},
                 success: function (response) {
                     if (response["result"] == "success") {
