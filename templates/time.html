@@ -19,7 +19,7 @@
 
            $.ajax({
                 type: "GET",
-                url: "/dates?id_give:" + leader_name,
+                url: "/dates?id_give=" + leader_name,
                 data: {},
                 success: function (response) {
                     if (response["result"] == "success") {
