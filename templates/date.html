@@ -32,6 +32,7 @@
         var today = null;
         var todayDay = null;
         var todayDate = null;
+        var todayDate2 = null;
         var todayMonth = null;
         var todayYear = null;
         var $tdDay = null;
@@ -55,6 +56,7 @@
             today = new Date();
             todayDay = today.getDay();
             todayDate = today.getDate();
+            todayDate2 = today.getDate();
             todayMonth = parseInt(month[today.getMonth()]);
             todayYear = today.getFullYear();
             firstDay = new Date(todayYear, todayMonth-1, 1);
@@ -72,10 +74,10 @@
         //calendar 날짜 채우기
         function drawDays() {
             for (var i = todayDay; i < (lastDayOfMonth - todayDate + todayDay +1 ); i++) {
-                $tdDay.eq(i).text(todayMonth + "/" + todayDate ++);
-                 // if( $tdDay.eq(i).text() == todayMonth + "/" + todayDay) {
-                 //     $tdDay.eq(i).css("font-weight", "900");
-                 // }
+                $tdDay.eq(i).text(todayMonth + "/" + todayDate2 ++);
+                 if( $tdDay.eq(i).text() == todayMonth + "/" + todayDate) {
+                     $tdDay.eq(i).css("font-weight", "900");
+                 }
             }
             for (var i =(lastDayOfMonth - todayDate + todayDay +1 ); i< (lastDayOfMonth - todayDate + todayDay +1 ) + nextLastDayOfMonth; i++) {
                 $tdDay.eq(i).text(todayMonth+1 +"/" +firstDayOfMonth++);
