@@ -41,7 +41,7 @@ def save_dates():
 def when2():
     return render_template('time.html')
 
-@app.route('/time', methods=['GET'])
+@app.route('/dates', methods=['GET'])
 def get_dates():
     id_receive = request.args.get('id_give')
     print(id_receive)
@@ -49,11 +49,6 @@ def get_dates():
     # print(dates)
     return jsonify({'result': 'success', 'msg': "날짜 가져옴"})
 
-@app.route('/time', methods=['GET'])
-def test_get():
-    title_receive = request.args.get('title_give')
-    print(title_receive)
-    return jsonify({'result': 'success', 'msg': '이 요청은 GET!'})
 
 # //선택한 시간 저장하기
 @app.route('/when3')

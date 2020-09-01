@@ -19,14 +19,10 @@
 
            $.ajax({
                 type: "GET",
-                url: "/time?id_give:" + leader_name,
+                url: "/dates?id_give:" + leader_name,
                 data: {},
                 success: function (response) {
                     if (response["result"] == "success") {
-                        // let dates = response['dates']
-                        // for (let i = 0; i<dates.length; i++ ) {
-                        //     appendReview(reviews[i]['title'], reviews[i]['author'], reviews[i]['review'])
-                        // }
                         alert(response['msg']);
                     } else {
                         alert("fail");
