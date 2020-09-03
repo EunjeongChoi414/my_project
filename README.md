@@ -16,16 +16,16 @@
 
 ## 사용 How To Use
 - *모임을 이끄는 주선자가 먼저 모일 수 있는 날짜를 선택해 추려주어야 전체 서비스가 이용가능합니다. 
-- 1. 주선자는 '예' 를 선택한 후 자신의 이름을 입력합니다. 
-- 2. 주선자는 모임을 할 날짜를 몇 개를 고릅니다. 
-- 3. 주선자는 해당 날짜에 자신이 모임에 나갈 수 있는 시간대를 선택합니다. 
-- 4. 주선자는 링크를 모임방에 공유합니다. 
-- 5. 주선자가 아닌 참여자들은 '아니오'를 선택하고 주선자와 자신의 이름을 입력합니다. 
-- 6. 주선자가 이미 선택한 날짜에 자신이 모임이 가능한 시간대를 선택합니다. 
-- 7. 2명 이상이 겹치는 시간대를 안내받고, 가장 많은 인원이 겹치는 시간대에 모이기로 결정합니다. 
+1. 주선자는 '예' 를 선택한 후 자신의 이름을 입력합니다. 
+2. 주선자는 모임을 할 날짜를 몇 개를 고릅니다. 
+3. 주선자는 해당 날짜에 자신이 모임에 나갈 수 있는 시간대를 선택합니다. 
+4. 주선자는 링크를 모임방에 공유합니다. 
+5. 주선자가 아닌 참여자들은 '아니오'를 선택하고 주선자와 자신의 이름을 입력합니다. 
+6. 주선자가 이미 선택한 날짜에 자신이 모임이 가능한 시간대를 선택합니다. 
+7. 2명 이상이 겹치는 시간대를 안내받고, 가장 많은 인원이 겹치는 시간대에 모이기로 결정합니다. 
 
 ## Contributing
-- Thanks to @HyunSikYoo
+- Thanks to @Hyunsik-Yoo
 
 ## Reference
 *(참고 리소스,  code snippet, 라이센스 정보를 표기합니다)*
@@ -34,13 +34,5 @@
 
 ## Links
 *(사람이 읽기 쉽게 요약된 링크 정보를 추가합니다. 현재 리포지토리의 정보를 적습니다)*
-- Project homepage: (예시) https://yourname.github.io/github-tutorial/
-- Repository: (예시) https://github.com/ohahohah/github-tutorial
-- 관련 프로젝트
-  - 프로젝트 이름 : (예시) https://github.com/ohahohah/readme-template
-  - 프로젝트 이름: (예시) https://github.com/someones/awesome-project/
-
-## License
-
-XYZ license를 준수합니다. ``LICENSE``에서 자세한 정보를 확인할 수 있습니다.  
-(예시) [https://github.com/yourname/github-link/LICENSE.md](https://github.com/ohahohah/)
+- Making Project: https://blog.naver.com/giving0414
+- Repository: (예시) https://github.com/EunjeongChoi414/my_project
