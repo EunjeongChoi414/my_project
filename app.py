@@ -44,10 +44,9 @@ def when2():
 @app.route('/dates', methods=['GET'])
 def get_dates():
     id_receive = request.args.get('id_give')
-    print(id_receive)
-    # dates = db.users.find_one({'id': id_receive}, {'_id': False})
-    # print(dates)
-    return jsonify({'result': 'success', 'msg': "날짜 가져옴"})
+    insert_date = db.users.find_one({'id': urllib.parse.unquote(id_receive)}, {'_id': False})
+    print(insert_date['ava_dates'])
+    return jsonify({'result': 'success', 'dates': insert_date['ava_dates']})
 
 
 # //선택한 시간 저장하기
