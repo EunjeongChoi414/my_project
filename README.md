@@ -1,46 +1,35 @@
 <img src="https://user-images.githubusercontent.com/17819874/79853717-5db2f900-8403-11ea-99ba-ed0bb3cdb9ef.png" height="100"/>
 
-# 프로젝트 이름  
+# 우리당장만나  
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ohahohah/readme-template/graphs/commit-activity) 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 
 
-> 프로젝트 간략 소개 한 문장 
-- 웹사이트 url / (챗봇일 경우)텔레그램 등 메신저 주소
-- 사이트에 대한 1-2단락 설명
+
+**카톡 투표만으로는 정하기 어려운 모임 만남의 시간을 쉽게 정할 수 있도록 도와주는 웹 서비스입니다.**
 
 ## 핵심 기능  Key Feature
-- (예시) 실시간 지역별 날씨에 맞는 옷차림 정보를 알려줍니다.
-- (예시) 미세먼지 정보를 파악할 수 있습니다.
+- 사용자들이 각자 모임이 가능한 시간을 입력하면, 2명 이상이 겹치는 공통 시간대를 계산해줍니다. 
 
 ## 사용 How To Use
-- 사용하고 싶도록 유용한 몇 가지 예를 적습니다. 코드 블록과 스크린샷 포함.
-- (wiki가 있을 경우) _더 많은 예시와 사용 예제는 [Wiki](wiki)를 참고하세요._
-![](header.png)
+**모임을 이끄는 주선자가 먼저 모일 수 있는 날짜를 선택해 추려주어야 전체 서비스가 이용가능합니다.**
+1. **주선자**는 '예' 를 선택한 후 자신의 이름을 입력합니다.
+2. **주선자**는 모임을 할 날짜를 몇 개를 고릅니다. 
+3. **주선자**는 해당 날짜에 자신이 모임에 나갈 수 있는 시간대를 선택합니다. 
+4. **주선자**는 링크를 모임방에 공유합니다. 
+5. 주선자가 아닌 **참여자들**은 '아니오'를 선택하고 주선자와 자신의 이름을 입력합니다. 
+6. **참여자들**은 주선자가 이미 선택한 날짜에 자신이 모임이 가능한 시간대를 선택합니다. 
+7. 2명 이상이 겹치는 시간대를 안내받고, 가장 많은 인원이 겹치는 시간대에 모이기로 결정합니다. 
 
 ## Contributing
-*(프로젝트 기여자가 있을 경우 적습니다)*
-- Thanks to @기여자이름
+- Thanks to @Hyunsik-Yoo
 
 ## Reference
-*(참고 리소스,  code snippet, 라이센스 정보를 표기합니다)*
-- (예시) [네이버 지도 API](링크url) : 장소카드 지도화면에 사용
-- (예시) [Teachable Machine](https://teachablemachine.withgoogle.com/) : 절하는 pose MachineLearning Model 
+- [When2meet](https://www.when2meet.com/) : 아이디어 및 달력 참고
+- [foobarbaz tistory blog](https://ysyapr91.tistory.com/2) : 달력 그리기 참고
 
 ## Links
-*(사람이 읽기 쉽게 요약된 링크 정보를 추가합니다. 현재 리포지토리의 정보를 적습니다)*
-- Project homepage: (예시) https://yourname.github.io/github-tutorial/
-- Repository: (예시) https://github.com/ohahohah/github-tutorial
-- 관련 프로젝트
-  - 프로젝트 이름 : (예시) https://github.com/ohahohah/readme-template
-  - 프로젝트 이름: (예시) https://github.com/someones/awesome-project/
-
-## License
-*(공동작업자가 있을 경우 모두 적어줍니다)*  
-이름1 – [이메일 주소1](mailto:이메일주소@example.com)  
-이름2 - [이메일 주소2](mailto:이메일주소@example.com)  
-
-XYZ license를 준수합니다. ``LICENSE``에서 자세한 정보를 확인할 수 있습니다.  
-(예시) [https://github.com/yourname/github-link/LICENSE.md](https://github.com/ohahohah/)
+- Making Project: https://blog.naver.com/giving0414
+- Repository: https://github.com/EunjeongChoi414/my_project
