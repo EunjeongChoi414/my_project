@@ -45,7 +45,6 @@ def when2():
 def get_dates():
     id_receive = request.args.get('id_give')
     insert_date = db.users.find_one({'id': urllib.parse.unquote(id_receive)}, {'_id': False})
-    print(insert_date['ava_dates'])
     return jsonify({'result': 'success', 'dates': insert_date['ava_dates']})
 
 

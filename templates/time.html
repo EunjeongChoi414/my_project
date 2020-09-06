@@ -8,9 +8,9 @@
         $(document).ready(function () {
             readyTimetable();
             // initDate();
-            // drawDays();
             // changeColor();
         })
+
         function readyTimetable() {
             let leader_name = "";
             var temp = location.href.split("?");
@@ -29,10 +29,12 @@
                 }
             })
         }
+
         function makeTimetable(dates) {
             let setTableHTML = "";
             setTableHTML += '<table class="calendar">';
             setTableHTML += '<tr>'
+            setTableHTML += '<th></th>'
             for (let i = 0; i < dates.length; i++) {
                 let tableHeader = '<th>' + dates[i] + '</th>';
                 setTableHTML += tableHeader;
@@ -40,9 +42,9 @@
             setTableHTML += '</tr>'
 
             for (var i = 0; i < 48; i++) {
-                setTableHTML += '<tr height="25">';
-                for (var j = 0; j < dates.length; j++) {
-                    setTableHTML += '<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
+                setTableHTML += '<tr height="20">';
+                for (var j = 0; j < dates.length +1; j++) {
+                    setTableHTML += '<td>';
                     setTableHTML += '    <div class="time_selection"></div>';
                     setTableHTML += '</td>';
                 }
@@ -50,9 +52,19 @@
             }
             setTableHTML += '</table>';
             $("#time_tab").html(setTableHTML);
+            drawTime(dates);
 
         }
+        function drawTime(dates) {
+            let $timeBox = $("td div.time_selection")
+            let time = ["밤12", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "낮12",
+            "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM", "밤12"]
 
+            for (var i = 0; i < (dates.length+1)*48; i += ((dates.length+1)*2) ) {
+                $timeBox.eq(i).text(time[i/((dates.length+1)*2)]);
+            }
+
+        }
 
 
     </script>
@@ -72,18 +84,29 @@
         table {
             border: 1px solid black;
             display: inline-table;
-            text-align: left;
-            width: 500px;
+            text-align: center;
+            width: 300px;
+            border-spacing: 0;
+            margin: 0 auto;
         }
 
         table.calendar td {
-            vertical-align: top;
-            border: 1px solid skyblue;
             width: 100px;
+            vertical-align: top;
+            text-align: right;
+            border: 1px solid skyblue;
+            border-bottom: none;
+            font-size:10px;
+            font-weight: bold;
+            padding-top: 0px;
+            cursor: pointer;
         }
-        .time {
-            width: 500px;
-            margin: 0 auto;
+
+        #time_tab {
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            width: 50%
         }
 
         .step3_btn {
@@ -96,10 +119,9 @@
 <div class="intro">
     <h1>나의 가능한 시간 입력하기</h1>
     <h3>가능한 시간을 클릭/드래그 해주세요!</h3>
-</div><br><br>
-<div class="time">
-    <div id="time_tab"></div>
 </div>
+<br><br>
+<div id="time_tab"></div>
 <div class="step3_btn">
     <a href="{{ url_for('when3') }}">다음 STEP</a>
 </div>
