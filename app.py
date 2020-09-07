@@ -43,15 +43,24 @@ def when2():
 
 @app.route('/dates', methods=['GET'])
 def get_dates():
-    id_receive = request.args.get('id_give')
-    insert_date = db.users.find_one({'id': urllib.parse.unquote(id_receive)}, {'_id': False})
-    return jsonify({'result': 'success', 'dates': insert_date['ava_dates']})
+    member_receive = request.args.get('member_give')
+    get_id = db.users.find_one({'member': urllib.parse.unquote(member_receive)}, {'_id': False})
+    get_date = db.users.find_one({'id': get_id['id']}, {'_id': False})
+    print(get_date['ava_dates'])
+    return jsonify({'result': 'success', 'dates': get_date['ava_dates']})
+
+@app.route('/timeDate', methods=['POST'])
+def save_timeNdates():
+    timeDates_receive = request.form.getlist('timeDates_give[]')
+    member_receive = request.form['member_give']
+    db.users.update_one({'member': urllib.parse.unquote(member_receive)}, {'$set': {'ava_timeDates': timeDates_receive}})
+    return jsonify({'result': 'success', 'msg': "시간날짜 저장완료"})
 
 
 # //선택한 시간 저장하기
-@app.route('/when3')
+@app.route('/result')
 def when3():
-    return render_template('when3.html')
+    return render_template('result.html')
 
 
 if __name__ == '__main__':

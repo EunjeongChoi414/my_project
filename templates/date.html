@@ -112,17 +112,17 @@
                 }
             }
             //선택된 날짜 api post.
-            let leader_name = "";
+            let member_name = "";
             var temp = location.href.split("?");
-            leader_name = temp[1].split(":")[1];
+            member_name = temp[1].split(":")[1];
 
             $.ajax({
                 type: "POST",
                 url: "/date",
-                data: {dates_give: dates, id_give: leader_name},
+                data: {dates_give: dates, id_give: member_name},
                 success: function (response) {
                     if (response["result"] == "success") {
-                        location.href = "time?name:"+leader_name;
+                        location.href = "time?name:"+member_name;
                     }
                 }
             })

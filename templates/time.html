@@ -7,18 +7,16 @@
     <script type="text/javascript">
         $(document).ready(function () {
             readyTimetable();
-            // initDate();
-            // changeColor();
         })
 
         function readyTimetable() {
-            let leader_name = "";
+            let member_name = "";
             var temp = location.href.split("?");
-            leader_name = temp[1].split(":")[1];
+            member_name = temp[1].split(":")[1];
 
             $.ajax({
                 type: "GET",
-                url: "/dates?id_give=" + leader_name,
+                url: "/dates?member_give=" + member_name,
                 data: {},
                 success: function (response) {
                     if (response["result"] == "success") {
@@ -33,37 +31,86 @@
         function makeTimetable(dates) {
             let setTableHTML = "";
             setTableHTML += '<table class="calendar">';
-            setTableHTML += '<tr>'
-            setTableHTML += '<th></th>'
+            setTableHTML += '<thead><tr><th></th>'
             for (let i = 0; i < dates.length; i++) {
                 let tableHeader = '<th>' + dates[i] + '</th>';
                 setTableHTML += tableHeader;
             }
-            setTableHTML += '</tr>'
+            setTableHTML += '</tr></thead><tbody>'
 
             for (var i = 0; i < 48; i++) {
                 setTableHTML += '<tr height="20">';
-                for (var j = 0; j < dates.length +1; j++) {
-                    setTableHTML += '<td>';
+                for (var j = 0; j < dates.length + 1; j++) {
+                    setTableHTML += '<td id="' + (i * (dates.length + 1) + j) + '">';
                     setTableHTML += '    <div class="time_selection"></div>';
                     setTableHTML += '</td>';
                 }
                 setTableHTML += '</tr>';
             }
-            setTableHTML += '</table>';
+            setTableHTML += '</tbody></table>';
             $("#time_tab").html(setTableHTML);
             drawTime(dates);
+            select(dates);
+            saveTimeDate(dates);
 
         }
+
         function drawTime(dates) {
             let $timeBox = $("td div.time_selection")
             let time = ["밤12", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "낮12",
-            "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM", "밤12"]
+                "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM", "밤12"]
 
-            for (var i = 0; i < (dates.length+1)*48; i += ((dates.length+1)*2) ) {
-                $timeBox.eq(i).text(time[i/((dates.length+1)*2)]);
+            for (var i = 0; i < (dates.length + 1) * 48; i += ((dates.length + 1) * 2)) {
+                $timeBox.eq(i).text(time[i / ((dates.length + 1) * 2)]);
             }
 
+        }
+
+        function select(dates) {
+            for (let k = 0; k < 48 * (dates.length + 1); k++) {
+                $("#" + k).click(function () {
+                    if ($("#" + k).css("background-color") == 'rgba(0, 0, 0, 0)') {
+                        $("#" + k).css("background-color", "lightskyblue");
+                        return
+                    } else {
+                        $("#" + k).css("background-color", 'rgba(0, 0, 0, 0)');
+                        return
+                    }
+                })
+                //     for(let l=0; l<49; l++) {
+                //            if(k == (dates.length+1)*l) {
+                //                $("#" + k).css("background-color", 'rgba(0, 0, 0, 0)');
+                //            }
+                // }
+            }
+
+        }
+
+        function saveTimeDate(dates) {
+
+            let timeDates = [];
+            $(".nextStep").click(function () {
+                for (let l = 0; l < 48 * (dates.length + 1); l++) {
+                    if ($("#" + l).css("background-color") == 'rgb(135, 206, 250)') {
+                        timeDates.push($("#" + l).attr("id"));
+                    }
+                }
+                let member_name = "";
+                var temp = location.href.split("?");
+                member_name = temp[1].split(":")[1];
+
+                $.ajax({
+                    type: "POST",
+                    url: "/timeDate",
+                    data: {timeDates_give: timeDates, member_give: member_name},
+                    success: function (response) {
+                        if (response["result"] == "success") {
+                            location.href = "result?name:" + member_name;
+                        }
+                    }
+                })
+
+            })
         }
 
 
@@ -96,7 +143,7 @@
             text-align: right;
             border: 1px solid skyblue;
             border-bottom: none;
-            font-size:10px;
+            font-size: 10px;
             font-weight: bold;
             padding-top: 0px;
             cursor: pointer;
@@ -123,7 +170,7 @@
 <br><br>
 <div id="time_tab"></div>
 <div class="step3_btn">
-    <a href="{{ url_for('when3') }}">다음 STEP</a>
+    <button type="button" class="nextStep">다음 STEP</button>
 </div>
 </body>
 </html>
