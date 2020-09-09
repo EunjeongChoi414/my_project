@@ -7,16 +7,16 @@
     <script type="text/javascript">
         $(document).ready(function () {
             let member_name = "";
-            var temp = location.href.split("?");
+            let temp = location.href.split("?");
             member_name = temp[1].split(":")[1];
 
             $.ajax({
                 type: "GET",
-                url: "/theResult?member_give=" + member_name,
+                url: "/the_result?member_give=" + member_name,
                 data: {},
                 success: function (response) {
                     if (response["result"] == "success") {
-                        showTable(response['team']);
+                        show_table(response['team']);
                     } else {
                         alert("서비스가 고장났습니다..죄송합니다..");
                     }
@@ -24,44 +24,44 @@
             })
         })
 
-        function showTable(team) {
+        function show_table(team) {
             let dates = team[0]['ava_dates']
-            let setTableHTML = "";
-            setTableHTML += '<table class="calendar">';
-            setTableHTML += '<tr><th></th>'
+            let set_table = ""
+            set_table += '<table class="calendar">';
+            set_table += '<tr><th></th>'
             for (let i = 0; i < dates.length; i++) {
-                let tableHeader = '<th>' + dates[i] + '</th>';
-                setTableHTML += tableHeader;
+                let table_header = '<th>' + dates[i] + '</th>';
+                set_table += table_header;
             }
-            setTableHTML += '</tr>'
+            set_table += '</tr>'
 
-            for (var i = 0; i < 48; i++) {
-                setTableHTML += '<tr height="20">';
-                for (var j = 0; j < dates.length + 1; j++) {
-                    setTableHTML += '<td id="' + (i * (dates.length + 1) + j) + '">';
-                    setTableHTML += '    <div class="time_selection"></div>';
-                    setTableHTML += '</td>';
+            for (let i = 0; i < 48; i++) {
+                set_table += '<tr height="20">';
+                for (let j = 0; j < dates.length + 1; j++) {
+                    set_table += '<td id="' + (i * (dates.length + 1) + j) + '">';
+                    set_table += '    <div class="time_selection"></div>';
+                    set_table += '</td>';
                 }
-                setTableHTML += '</tr>';
+                set_table += '</tr>';
             }
-            setTableHTML += '</table>';
-            $(".when_result").html(setTableHTML);
-            drawTime(dates);
-            readyResult(team, dates);
+            set_table += '</table>';
+            $(".when_result").html(set_table);
+            draw_time(dates);
+            ready_result(team, dates);
         }
 
-        function drawTime(dates) {
+        function draw_time(dates) {
             let $timeBox = $("td div.time_selection")
             let time = ["밤12", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "낮12",
                 "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM", "밤12"]
 
-            for (var i = 0; i < (dates.length + 1) * 48; i += ((dates.length + 1) * 2)) {
+            for (let i = 0; i < (dates.length + 1) * 48; i += ((dates.length + 1) * 2)) {
                 $timeBox.eq(i).text(time[i / ((dates.length + 1) * 2)]);
             }
 
         }
 
-        function readyResult(team, dates) {
+        function ready_result(team, dates) {
             let assemble = [];
             for (let i = 0; i < team.length; i++) {
                 for (let j = 0; j < team[i]['ava_timeDates'].length; j++) {
@@ -82,10 +82,10 @@
                     }
                 }
             }
-            showResult(temp, dates);
+            show_result(temp, dates);
         }
 
-        function showResult(temp, dates) {
+        function show_result(temp, dates) {
             for (let j = 0; j < temp.length; j++) {
                 for (let i = 0; i < (dates.length + 1) * 48; i++) {
                     if(parseInt($("#" + i).attr("id"))==temp[j]){
@@ -151,9 +151,6 @@
 <div class="when_result"></div>
 <div class="step4_btn">
     <a>공유하기</a>
-</div>
-<div>
-    <a>?</a>
 </div>
 </body>
 </html>

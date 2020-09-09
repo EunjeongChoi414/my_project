@@ -49,11 +49,11 @@ def get_dates():
     print(get_date['ava_dates'])
     return jsonify({'result': 'success', 'dates': get_date['ava_dates']})
 
-@app.route('/timeDate', methods=['POST'])
-def save_timeNdates():
-    timeDates_receive = request.form.getlist('timeDates_give[]')
+@app.route('/time_dates', methods=['POST'])
+def save_time_dates():
+    time_dates_receive = request.form.getlist('time_dates_give[]')
     member_receive = request.form['member_give']
-    db.users.update_one({'member': urllib.parse.unquote(member_receive)}, {'$set': {'ava_timeDates': timeDates_receive}})
+    db.users.update_one({'member': urllib.parse.unquote(member_receive)}, {'$set': {'ava_timeDates': time_dates_receive}})
     return jsonify({'result': 'success', 'msg': "시간날짜 저장완료"})
 
 
@@ -62,8 +62,8 @@ def save_timeNdates():
 def when3():
     return render_template('result.html')
 
-@app.route('/theResult', methods=['GET'])
-def get_timeNdates():
+@app.route('/the_result', methods=['GET'])
+def get_time_dates():
     member_receive = request.args.get('member_give')
     get_id = db.users.find_one({'member': urllib.parse.unquote(member_receive)}, {'_id': False})
     get_team = list(db.users.find({'id': get_id['id']}, {'_id': False}))

@@ -6,12 +6,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            readyTimetable();
+            ready_time_table();
         })
 
-        function readyTimetable() {
+        function ready_time_table() {
             let member_name = "";
-            var temp = location.href.split("?");
+            let temp = location.href.split("?");
             member_name = temp[1].split(":")[1];
 
             $.ajax({
@@ -20,7 +20,7 @@
                 data: {},
                 success: function (response) {
                     if (response["result"] == "success") {
-                        makeTimetable(response['dates']);
+                        make_time_table(response['dates']);
                     } else {
                         alert("서비스가 고장났습니다..죄송합니다..");
                     }
@@ -28,39 +28,39 @@
             })
         }
 
-        function makeTimetable(dates) {
-            let setTableHTML = "";
-            setTableHTML += '<table class="calendar">';
-            setTableHTML += '<tr><th></th>'
+        function make_time_table(dates) {
+            let set_table = "";
+            set_table += '<table class="calendar">';
+            set_table += '<tr><th></th>'
             for (let i = 0; i < dates.length; i++) {
-                let tableHeader = '<th>' + dates[i] + '</th>';
-                setTableHTML += tableHeader;
+                let table_header = '<th>' + dates[i] + '</th>';
+                set_table += table_header;
             }
-            setTableHTML += '</tr>'
+            set_table += '</tr>'
 
-            for (var i = 0; i < 48; i++) {
-                setTableHTML += '<tr height="20">';
-                for (var j = 0; j < dates.length + 1; j++) {
-                    setTableHTML += '<td id="' + (i * (dates.length + 1) + j) + '">';
-                    setTableHTML += '    <div class="time_selection"></div>';
-                    setTableHTML += '</td>';
+            for (let i = 0; i < 48; i++) {
+                set_table += '<tr height="20">';
+                for (let j = 0; j < dates.length + 1; j++) {
+                    set_table += '<td id="' + (i * (dates.length + 1) + j) + '">';
+                    set_table += '    <div class="time_selection"></div>';
+                    set_table += '</td>';
                 }
-                setTableHTML += '</tr>';
+                set_table += '</tr>';
             }
-            setTableHTML += '</table>';
-            $("#time_tab").html(setTableHTML);
-            drawTime(dates);
+            set_table += '</table>';
+            $("#time_tab").html(set_table);
+            draw_time(dates);
             select(dates);
-            saveTimeDate(dates);
+            save_time_dates(dates);
 
         }
 
-        function drawTime(dates) {
+        function draw_time(dates) {
             let $timeBox = $("td div.time_selection")
             let time = ["밤12", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "낮12",
                 "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM", "밤12"]
 
-            for (var i = 0; i < (dates.length + 1) * 48; i += ((dates.length + 1) * 2)) {
+            for (let i = 0; i < (dates.length + 1) * 48; i += ((dates.length + 1) * 2)) {
                 $timeBox.eq(i).text(time[i / ((dates.length + 1) * 2)]);
             }
 
@@ -77,6 +77,7 @@
                         return
                     }
                 })
+                //시간 영역은 선택 못 하게 만들기
                 //     for(let l=0; l<49; l++) {
                 //            if(k == (dates.length+1)*l) {
                 //                $("#" + k).css("background-color", 'rgba(0, 0, 0, 0)');
@@ -86,23 +87,23 @@
 
         }
 
-        function saveTimeDate(dates) {
+        function save_time_dates(dates) {
 
-            let timeDates = [];
+            let time_dates = [];
             $(".nextStep").click(function () {
                 for (let l = 0; l < 48 * (dates.length + 1); l++) {
                     if ($("#" + l).css("background-color") == 'rgb(135, 206, 250)') {
-                        timeDates.push($("#" + l).attr("id"));
+                        time_dates.push($("#" + l).attr("id"));
                     }
                 }
                 let member_name = "";
-                var temp = location.href.split("?");
+                let temp = location.href.split("?");
                 member_name = temp[1].split(":")[1];
 
                 $.ajax({
                     type: "POST",
-                    url: "/timeDate",
-                    data: {timeDates_give: timeDates, member_give: member_name},
+                    url: "/time_dates",
+                    data: {time_dates_give: time_dates, member_give: member_name},
                     success: function (response) {
                         if (response["result"] == "success") {
                             location.href = "result?name:" + member_name;

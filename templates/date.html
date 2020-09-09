@@ -6,52 +6,52 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            drawCalendar();
-            initDate();
-            drawDays();
-            changeColor();
+            draw_calendar();
+            init_date();
+            draw_days();
+            change_color();
         })
 
-        function drawCalendar() {
-            var setTableHTML = "";
-            setTableHTML += '<table class="calendar">';
-            setTableHTML += '<tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>';
-            for (var i = 0; i < 5; i++) {
-                setTableHTML += '<tr height="50">';
-                for (var j = 0; j < 7; j++) {
-                    setTableHTML += '<td id="' + (i*7+j) + '"style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
-                    setTableHTML += '    <div class="cal-day"></div>';
-                    setTableHTML += '</td>';
+        function draw_calendar() {
+            let set_table = "";
+            set_table += '<table class="calendar">';
+            set_table += '<tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>';
+            for (let i = 0; i < 5; i++) {
+                set_table += '<tr height="50">';
+                for (let j = 0; j < 7; j++) {
+                    set_table += '<td id="' + (i*7+j) + '"style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
+                    set_table += '    <div class="cal_day"></div>';
+                    set_table += '</td>';
                 }
-                setTableHTML += '</tr>';
+                set_table += '</tr>';
             }
-            setTableHTML += '</table>';
-            $("#cal_tab").html(setTableHTML);
+            set_table += '</table>';
+            $("#cal_tab").html(set_table);
         }
 
-        var today = null;
-        var todayDay = null;
-        var todayDate = null;
-        var todayDate2 = null;
-        var todayMonth = null;
-        var todayYear = null;
-        var $tdDay = null;
-        var dayCount = null;
-        var firstDay = null;
-        var lastDay = null
-        var firstDayOfMonth = null;
-        var lastDayOfMonth = null;
-        var weekStartDate = null;
-        // var weekEndDate = null;
-        var thisWeekStartDate = null;
-        // var thisWeekEndDate = null;
-        var month = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
-        var nextLastDay = null;
-        var nextLastDayOfMonth = null;
+        let today = null;
+        let todayDay = null;
+        let todayDate = null;
+        let todayDate2 = null;
+        let todayMonth = null;
+        let todayYear = null;
+        let $tdDay = null;
+        let dayCount = null;
+        let firstDay = null;
+        let lastDay = null
+        let firstDayOfMonth = null;
+        let lastDayOfMonth = null;
+        let weekStartDate = null;
+        // let weekEndDate = null;
+        let thisWeekStartDate = null;
+        // let thisWeekEndDate = null;
+        let month = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+        let nextLastDay = null;
+        let nextLastDayOfMonth = null;
 
         //날짜 초기화
-        function initDate() {
-            $tdDay = $("td div.cal-day")
+        function init_date() {
+            $tdDay = $("td div.cal_day")
             dayCount = 0;
             today = new Date();
             todayDay = today.getDay();
@@ -72,25 +72,25 @@
         }
 
         //calendar 날짜 채우기
-        function drawDays() {
-            for (var i = todayDay; i < (lastDayOfMonth - todayDate + todayDay +1 ); i++) {
+        function draw_days() {
+            for (let i = todayDay; i < (lastDayOfMonth - todayDate + todayDay +1 ); i++) {
                 $tdDay.eq(i).text(todayMonth + "/" + todayDate2 ++);
                  if( $tdDay.eq(i).text() == todayMonth + "/" + todayDate) {
                      $tdDay.eq(i).css("font-weight", "900");
                  }
             }
-            for (var i =(lastDayOfMonth - todayDate + todayDay +1 ); i< (lastDayOfMonth - todayDate + todayDay +1 ) + nextLastDayOfMonth; i++) {
+            for (let i =(lastDayOfMonth - todayDate + todayDay +1 ); i< (lastDayOfMonth - todayDate + todayDay +1 ) + nextLastDayOfMonth; i++) {
                 $tdDay.eq(i).text(todayMonth+1 +"/" +firstDayOfMonth++);
             }
-            for (var i = 0; i < 42; i += 7) {
+            for (let i = 0; i < 42; i += 7) {
                 $tdDay.eq(i).css("color", "red");
             }
-            for (var i = 6; i < 42; i += 7) {
+            for (let i = 6; i < 42; i += 7) {
                 $tdDay.eq(i).css("color", "blue");
             }
         }
 
-        function changeColor() {
+        function change_color() {
             for(let k = 0; k<35; k++ ) {
                 $("#"+k).click(function () {
                  if($("#"+k).css("background-color")=='rgba(0, 0, 0, 0)') {
@@ -113,7 +113,7 @@
             }
             //선택된 날짜 api post.
             let member_name = "";
-            var temp = location.href.split("?");
+            let temp = location.href.split("?");
             member_name = temp[1].split(":")[1];
 
             $.ajax({
