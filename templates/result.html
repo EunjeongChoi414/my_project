@@ -3,11 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <title>우리당장만나</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let member_name = "";
+            var temp = location.href.split("?");
+            member_name = temp[1].split(":")[1];
+
+            $.ajax({
+                type: "GET",
+                url: "/theResult?member_give=" + member_name,
+                data: {},
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        showTable(response['team']);
+                    } else {
+                        alert("서비스가 고장났습니다..죄송합니다..");
+                    }
+                }
+            })
+        })
+
+        function showTable(team) {
+            let dates = team[0]['ava_dates']
+            let setTableHTML = "";
+            setTableHTML += '<table class="calendar">';
+            setTableHTML += '<tr><th></th>'
+            for (let i = 0; i < dates.length; i++) {
+                let tableHeader = '<th>' + dates[i] + '</th>';
+                setTableHTML += tableHeader;
+            }
+            setTableHTML += '</tr>'
+
+            for (var i = 0; i < 48; i++) {
+                setTableHTML += '<tr height="20">';
+                for (var j = 0; j < dates.length + 1; j++) {
+                    setTableHTML += '<td id="' + (i * (dates.length + 1) + j) + '">';
+                    setTableHTML += '    <div class="time_selection"></div>';
+                    setTableHTML += '</td>';
+                }
+                setTableHTML += '</tr>';
+            }
+            setTableHTML += '</table>';
+            $(".when_result").html(setTableHTML);
+            drawTime(dates);
+            readyResult(team, dates);
+        }
+
+        function drawTime(dates) {
+            let $timeBox = $("td div.time_selection")
+            let time = ["밤12", "1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "낮12",
+                "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", "10PM", "11PM", "밤12"]
+
+            for (var i = 0; i < (dates.length + 1) * 48; i += ((dates.length + 1) * 2)) {
+                $timeBox.eq(i).text(time[i / ((dates.length + 1) * 2)]);
+            }
+
+        }
+
+        function readyResult(team, dates) {
+            let assemble = [];
+            for (let i = 0; i < team.length; i++) {
+                for (let j = 0; j < team[i]['ava_timeDates'].length; j++) {
+                    assemble.push(parseInt(team[i]['ava_timeDates'][j]));
+                }
+
+            }
+            //같은 숫자가 4(team.length)번 나오는 숫자를 리스트에 모으는 포문.
+            let temp = [];
+            for (let i = 0; i < assemble.length - 1; i++) {
+                let cnt = 0;
+                for (let j = i + 1; j < assemble.length; j++) {
+                    if (assemble[i] == assemble[j]) {
+                        cnt++;
+                        if (cnt == team.length - 1) {
+                            temp.push(assemble[i]);
+                        }
+                    }
+                }
+            }
+            showResult(temp, dates);
+        }
+
+        function showResult(temp, dates) {
+            for (let j = 0; j < temp.length; j++) {
+                for (let i = 0; i < (dates.length + 1) * 48; i++) {
+                    if(parseInt($("#" + i).attr("id"))==temp[j]){
+                        $("#" + i).css("background-color", "deeppink")
+                    }
+                }
+            }
+
+        }
+
+
+    </script>
     <style type="text/css">
         .intro h1 {
             width: 400px;
             margin: 0 auto;
         }
+
         /* .intro h3 {*/
         /*    width: 450px;*/
         /*    margin: 0 auto;*/
@@ -17,15 +113,42 @@
         /*    width: 100px;*/
         /*    margin-left: 80%;*/
         /*}*/
+
+        table {
+            border: 1px solid black;
+            display: inline-table;
+            text-align: center;
+            width: 300px;
+            border-spacing: 0;
+            margin: 0 auto;
+        }
+
+        table.calendar td {
+            width: 100px;
+            vertical-align: top;
+            text-align: right;
+            border: 1px solid lightpink;
+            border-bottom: none;
+            font-size: 10px;
+            font-weight: bold;
+            padding-top: 0px;
+            cursor: pointer;
+        }
+
+        .when_result {
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            width: 50%
+        }
     </style>
 </head>
 <body>
 <div class="intro">
     <h1>우리가 만날 수 있는 시간!</h1>
 </div>
-<div class = "when_result">
-
-</div>
+<br><br>
+<div class="when_result"></div>
 <div class="step4_btn">
     <a>공유하기</a>
 </div>

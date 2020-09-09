@@ -62,6 +62,13 @@ def save_timeNdates():
 def when3():
     return render_template('result.html')
 
+@app.route('/theResult', methods=['GET'])
+def get_timeNdates():
+    member_receive = request.args.get('member_give')
+    get_id = db.users.find_one({'member': urllib.parse.unquote(member_receive)}, {'_id': False})
+    get_team = list(db.users.find({'id': get_id['id']}, {'_id': False}))
+    print(get_team)
+    return jsonify({'result': 'success', 'team': get_team})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

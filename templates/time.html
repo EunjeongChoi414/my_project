@@ -31,12 +31,12 @@
         function makeTimetable(dates) {
             let setTableHTML = "";
             setTableHTML += '<table class="calendar">';
-            setTableHTML += '<thead><tr><th></th>'
+            setTableHTML += '<tr><th></th>'
             for (let i = 0; i < dates.length; i++) {
                 let tableHeader = '<th>' + dates[i] + '</th>';
                 setTableHTML += tableHeader;
             }
-            setTableHTML += '</tr></thead><tbody>'
+            setTableHTML += '</tr>'
 
             for (var i = 0; i < 48; i++) {
                 setTableHTML += '<tr height="20">';
@@ -47,7 +47,7 @@
                 }
                 setTableHTML += '</tr>';
             }
-            setTableHTML += '</tbody></table>';
+            setTableHTML += '</table>';
             $("#time_tab").html(setTableHTML);
             drawTime(dates);
             select(dates);
