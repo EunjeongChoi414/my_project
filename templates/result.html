@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>우리당장만나</title>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Myeongjo:wght@400;700&display=swap"
+          rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -88,7 +90,7 @@
         function show_result(temp, dates) {
             for (let j = 0; j < temp.length; j++) {
                 for (let i = 0; i < (dates.length + 1) * 48; i++) {
-                    if(parseInt($("#" + i).attr("id"))==temp[j]){
+                    if (parseInt($("#" + i).attr("id")) == temp[j]) {
                         $("#" + i).css("background-color", "deeppink")
                     }
                 }
@@ -99,20 +101,24 @@
 
     </script>
     <style type="text/css">
+        * {
+            font-family: 'Nanum Myeongjo', serif
+        }
+
         .intro h1 {
             width: 400px;
             margin: 0 auto;
+            text-align: center;
+
         }
 
-        /* .intro h3 {*/
-        /*    width: 450px;*/
-        /*    margin: 0 auto;*/
-        /*    padding-top: 30px;*/
-        /*}*/
-        /*.step2_btn{*/
-        /*    width: 100px;*/
-        /*    margin-left: 80%;*/
-        /*}*/
+        .intro h3 {
+            width: 700px;
+            margin: 0 auto;
+            padding-top: 30px;
+            text-align: center;
+
+        }
 
         table {
             border: 1px solid black;
@@ -141,16 +147,32 @@
             display: flex;
             width: 50%
         }
+
+        .step4_btn {
+            width: 100px;
+            margin-left: 80%;
+        }
+
+        button {
+            padding: 10px;
+            font-size: medium;
+            font-weight: bold;
+            width: 120px;
+            background-color: lightpink;
+            border-style: none;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-<div class="intro">
+<div class="intro"><br>
     <h1>우리가 만날 수 있는 시간!</h1>
+    <h3>공유하기 버튼을 누르고 같이 만나고 싶은 사람에게 URL을 보내세요!</h3>
 </div>
 <br><br>
 <div class="when_result"></div>
 <div class="step4_btn">
-    <a>공유하기</a>
+    <button type="button" onclick="location.href='user_info'">공유하기</button>
 </div>
 </body>
 </html>

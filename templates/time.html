@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>우리당장만나</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -90,7 +91,7 @@
         function save_time_dates(dates) {
 
             let time_dates = [];
-            $(".nextStep").click(function () {
+            $("#next_step").click(function () {
                 for (let l = 0; l < 48 * (dates.length + 1); l++) {
                     if ($("#" + l).css("background-color") == 'rgb(135, 206, 250)') {
                         time_dates.push($("#" + l).attr("id"));
@@ -118,15 +119,22 @@
     </script>
     <title>우리당장만나</title>
     <style type="text/css">
+        * {
+            font-family: 'Nanum Myeongjo', serif
+        }
         .intro h1 {
             width: 400px;
             margin: 0 auto;
+            text-align: center;
+
         }
 
         .intro h3 {
             width: 330px;
             margin: 0 auto;
             padding-top: 30px;
+            text-align: center;
+
         }
 
         table {
@@ -154,24 +162,33 @@
             margin-left: auto;
             margin-right: auto;
             display: flex;
-            width: 50%
+            width: 40%
         }
 
         .step3_btn {
             width: 100px;
             margin-left: 80%;
         }
+         button {
+            padding: 10px;
+            font-size: medium;
+            font-weight: bold;
+            width: 130px;
+            background-color: lightskyblue;
+            border-style: none;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-<div class="intro">
+<div class="intro"><br>
     <h1>나의 가능한 시간 입력하기</h1>
-    <h3>가능한 시간을 클릭/드래그 해주세요!</h3>
+    <h3>가능한 시간을 클릭 해주세요!</h3>
 </div>
 <br><br>
 <div id="time_tab"></div>
 <div class="step3_btn">
-    <button type="button" class="nextStep">다음 STEP</button>
+    <button type="button" id="next_step">다음 STEP</button>
 </div>
 </body>
 </html>
